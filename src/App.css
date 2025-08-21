@@ -1,0 +1,265 @@
+.app-container {
+  height: 100vh;
+  width: 100vw;
+  background: #181a1f;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* HEADER */
+.header {
+  padding: 10px 24px;
+  background: #1d1e26;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #20233a;
+}
+.session-title {
+  font-weight: 500;
+}
+
+/* RECORDING STRIP */
+.recording-strip {
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.recording-dot {
+  background: #ff3b3b;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.recording-dot.blink {
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.recording-text {
+  color: #ff3b3b;
+  font-weight: 500;
+}
+
+/* MAIN LAYOUT */
+.main-layout {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* VIDEO PANELS */
+.video-panels {
+  display: flex;
+  flex: 3;
+}
+.panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.ai-panel {
+  background: linear-gradient(135deg, #2064e9, #238fff);
+}
+.user-panel {
+  background: #1e1f24;
+}
+.avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: white;
+  margin-bottom: 10px;
+}
+.video-feed {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+.panel-label {
+  font-size: 14px;
+  color: white;
+}
+
+/* SPEAKING ANIMATION (Meet style) */
+.panel.speaking::before {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* CONVERSATION PANEL */
+.conversation-panel {
+  flex: 0.7;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-left: 2px solid #2479dc;
+  overflow: hidden;
+}
+.conversation-header {
+  font-weight: bold;
+  font-size: 15px;
+  color: #1660c7;
+  margin-bottom: 10px;
+}
+.messages.scrollable-chat {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 100%;
+}
+.message-bubble {
+  padding: 10px 15px;
+  margin: 8px;
+  border-radius: 12px;
+  max-width: 80%;
+  position: relative;
+}
+.ai-bubble {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-start;
+}
+
+.user-bubble {
+  background-color: #d3d3d3; /* Changed to a medium grey for better contrast */
+  color: black;
+  align-self: flex-end;
+}
+.timestamp {
+  font-size: 11px;
+  color: #999dba;
+  display: block;
+  margin-top: 4px;  
+  text-align: right;
+}
+
+/* CONTROLS */
+.controls-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 12px;
+}
+.icon-btn {
+  background: #2173fa;
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-btn.end {
+  background: #ff3b3b;
+}
+.icon-btn.disabled {
+  background: #3b4a64;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.icon-btn.waiting {
+  background: #ff7b7b; /* light red */
+}
+.icon-btn.ready {
+  background: #2173fa; /* blue */
+}
+
+
+/* Overlay full-screen */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.ready-btn {
+  background-color: #28a745;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.ready-btn:hover {
+  background-color: #218838;
+}
+
+/* Recording buttons */
+.record-btn {
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  margin: 0 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.record-btn:hover {
+  background-color: #0069d9;
+}
+
+.record-btn.stop {
+  background-color: #dc3545;
+}
+
+.record-btn.stop:hover {
+  background-color: #c82333;
+}
+
+/* Controls alignment */
+.controls-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px;
+}
