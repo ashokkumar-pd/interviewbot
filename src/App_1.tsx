@@ -88,7 +88,8 @@ const App: React.FC = () => {
         resolve();
         return;
       }
-      const socket = new WebSocket("ws://localhost:8000/ws/speech");
+      // const socket = new WebSocket("ws://localhost:8000/ws/speech");
+      const socket = new WebSocket("ws://ec2-13-200-222-241.ap-south-1.compute.amazonaws.com:8080/ws/speech")
       socketRef.current = socket;
 
       socket.onopen = () => {
